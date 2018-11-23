@@ -1,0 +1,530 @@
+/*
+Plugin name: Foundery Co-Work Booking System
+Plugin URI: http://www.websolutions.to
+Description: Co-work Space Room Booking System created for the FOUNDERY Toronto (RIP).
+Author: Nick Andrews Toronto 
+Tags: Co-working Shared Reservation System, Wordpress plugin
+*/
+
+$lb-glass: rgba(255,255,255,.15);
+$lb-waterblue: #adf4ff;
+$lb-poolblue: #82cfcf;
+$lb-poolglass: rgba(130,207,207,.5);
+$lb-seablue:  #0080df;
+$lb-gold: #ee9900;
+$lb-alert: #cc0000;
+
+$lb-blak: #000;
+$lb-grey:  rgba(0, 0, 0, .80);
+$lb-dkgrey: rgba(34, 34, 34, .90);
+
+
+#fndry_launcher{
+  position: fixed;
+  right: 20px;
+  top: 48%;
+  width: 36px;
+  height: 36px;
+  background: transparent; 
+  color: $lb-seablue;
+  font-size: 24px;
+  line-height: 24px;
+  text-align: center;
+  transition: all 1s;
+  z-index: +10;
+}
+.fndry-open{
+  color: $lb-alert !important;
+  right: 30px !important;
+  top: 40px !important;
+}
+.fndry-open::before{
+  content: "\229B" !important;
+}
+#fndry_launcher:hover,
+#fndry_launcher:focus,  {
+  color: $lb-waterblue;
+  cursor: pointer;
+}
+#fndry_launcher::before{
+  content: "\2296";
+}
+
+
+#fndry-booking {
+  background: $lb-seablue;
+  display: none;
+  height: 100%;
+  overflow: scroll;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: +9;
+	.week-wrap {
+	  margin-top: 40px;
+	  .room-select-wrap {
+	    text-align: center;
+	  }
+	  a{
+	    position: relative;
+	    z-index: +1;
+	  }
+	  .room-selector {
+	    background: $lb-waterblue;
+	    border: 1px solid $lb-poolblue;
+	    border-radius: 1%;
+	    color: $lb-poolblue;
+	    display: inline-block;
+	    margin: 1%;
+      min-width: 10%;
+	    padding: 0.5%;
+	    text-align: center;
+      .room-desc{
+        display: none;
+        font-size: .8em;
+        span{
+          display: block;
+          font-size: .75em;
+        }
+      }
+	  }
+	  .room-selector:hover {
+      cursor: pointer;
+	  }
+	  .activeroom {
+	    background: $lb-blak;
+	    border-color: $lb-gold;
+	    color: $lb-waterblue;
+	    transition: all 1s;
+      .room-desc{
+        display: block;
+      }
+	  }
+	  .week-select-wrap {
+	    text-align: center;
+	    .week-selector {
+	      background: $lb-waterblue;
+	      border-radius: 4px;
+	      color: $lb-poolblue;
+	      display: inline-flex;
+	      height: 5%;
+	      margin: 1%;
+	      padding: 1%;
+	      text-align: center;
+	    }
+      .week-selector:hover {
+	      cursor: pointer;
+      }
+      .activeweek {
+	      background: $lb-blak;
+	      border-color: $lb-gold;
+	      color: $lb-waterblue;
+	      transition: all 1s;
+	    }
+	  }
+	  .hotday {
+      background: $lb-gold;
+      transition: all 1s;
+	    .day-title {
+        color: $lb-blak;
+	    }
+	  }
+    .day-title {
+      color: $lb-seablue;
+      padding: 5px;
+	  }
+	  .day-title:hover {
+	    cursor: pointer;
+	  }
+	  .hundred-wrap {
+	    height: 24px;
+	    margin: 0 10px;
+	    padding: 0;
+	    position: absolute;
+	    top: 5px;
+	    width: 10px;
+	    .mytotals {
+	      background: $lb-gold;
+	      border-radius: 0 20px 0 0;
+	      bottom: 0;
+	      left: 0;
+	      max-height: 100%;
+	      position: absolute;
+	      transition: all 1s;
+	      width: 100%;
+	    }
+	  }
+	}
+	.weekday {
+    background: $lb-waterblue;
+    border: 1px transparent solid;
+    flex-direction: row;
+    flex-grow: 1;
+    float: left;
+    height: auto;
+    position: relative;
+    text-align: center;
+    width: 14.25%;
+    .toggler {
+      display: none;
+      .hourwrap {
+        height: 80px;
+        margin: 0;
+        overflow: hidden;
+        position: relative;
+        /* Safari 4.0 - 8.0 */
+        @-webkit-keyframes comingx {
+          10%   {  background-image: linear-gradient(to right, $lb-gold 0%, $lb-glass 0%);}
+          50%  {   background-image: linear-gradient(to right, $lb-gold 40%, $lb-glass 60%);}
+          80%  {   background-image: linear-gradient(to right, $lb-gold 60%, $lb-glass 40%);}
+          100% {   background-image: linear-gradient(to right, $lb-gold 90%, $lb-glass 0%);}
+        }
+
+        /* Standard syntax */
+        @keyframes comingx {
+          10%   {  background-image: linear-gradient(to right, $lb-gold 0%, $lb-glass 0%);}
+          50%  {   background-image: linear-gradient(to right, $lb-gold 40%, $lb-glass 60%);}
+          80%  {   background-image: linear-gradient(to right, $lb-gold 60%, $lb-glass 40%);}
+          100% {   background-image: linear-gradient(to right, $lb-gold 90%, $lb-glass 0%);}
+        }
+        .pending {
+            animation: comingx infinite .5s;
+        }
+      }
+      .passe {
+        display: none;
+      }
+    }
+  }
+  .weekday:hover {
+    border: 1px $lb-grey solid;
+  }
+  .hourwrap {
+    div {
+      .book-icon {
+        border: 2px transparent solid;
+        display: inline-block;
+        height: 20px;
+        padding: 0;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        width: 20px;
+      }
+      .book-icon:hover {
+        background-position: -5px -28px;
+      }
+      .xloser {
+        background-image: url('img/book.svg');
+        background-position: -26px -2px;
+        background-repeat: no-repeat;
+        border: 0 transparent solid;
+        height: 25px;
+        position: absolute;
+        right: 8px;
+        top: 10px;
+        width: 25px;
+      }
+      .xloser:hover {
+        background-position: -26px -26px;
+      }
+    }
+  }
+  .segment-30{
+    .toggler{
+      .hourwrap{
+        border: 1px $lb-seablue solid;
+        border-radius: 1px;
+        height: 80px;
+        margin: 0;
+        overflow: hidden;
+        position: relative;
+        .hour-segment{
+          width: 100% !important;
+          .booked-by{
+            width: 66%;
+          }
+          .book-icon {
+            border: 2px transparent solid;
+            display: inline-block;
+            height: 30px;
+            padding: 0;
+            position: absolute;
+            top: 10px;
+            width: 30px;
+          }
+          .book-icon:hover {
+            background-position: -4px -3px;
+          }
+          .xloser{
+            left: 65% !important;
+          }
+        }
+        .hour-segment:first-of-type {
+          height: 49%;
+          width: 49%;
+          position: absolute;
+          top: 0px;
+          left: 0px;
+        }
+        .hour-segment:nth-of-type(2) {
+          height: 49%;
+          width: 49%;
+          position: absolute;
+          bottom: 0px;
+          left: 0px;
+        }
+      }
+    }
+  }
+  .segment-15{
+    .toggler{
+      .hourwrap{
+        border: 1px $lb-seablue solid;
+        border-radius: 1px;
+        height: 80px;
+        margin: 0;
+        overflow: hidden;
+        position: relative;
+
+
+        .hour-segment{
+          width: 50% !important;
+          .booked-by{
+            width: 70%;
+          }
+          .book-icon {
+           
+            border: 2px transparent solid;
+            display: inline-block;
+            height: 30px;
+            padding: 0;
+            position: absolute;
+            right: 10px;
+            top: 0px;
+            width: 30px;
+          }
+          .book-icon:hover {
+            background-position: -5px -28px;
+          }
+          .xloser{
+            left: 70% !important;
+          }
+        }
+        .hour-segment:first-of-type {
+          height: 49%;
+          width: 49%;
+          position: absolute;
+          top: 0px;
+          left: 0px;
+        }
+        .hour-segment:nth-of-type(2) {
+          height: 49%;
+          width: 49%;
+          position: absolute;
+          top: 0px;
+          right: 0px;
+        }
+        .hour-segment:nth-of-type(3) {
+          height: 49%;
+          width: 49%;
+          position: absolute;
+          bottom: 0px;
+          left: 0px;
+        }
+        .hour-segment:nth-of-type(4) {
+          height: 49%;
+          right: 0px;
+          position: absolute;
+          bottom: 0px;
+          width: 49%;
+        }
+      }
+    }
+  }
+  .hourwrap {
+    div {
+      .xloser {
+        background-image: url('img/book.svg');
+        background-position: -26px -2px;
+        background-repeat: no-repeat;
+        border: 0 transparent solid;
+        height: 25px;
+        position: absolute;
+        right: 8px;
+        top: 10px;
+        width: 25px;
+      }
+      .xloser:hover {
+        background-position: -26px -26px;
+      }
+    }
+    div {
+      position: relative;
+      .booked-by {
+        background: $lb-grey;
+        border-radius: 9px 0;
+        color: $lb-waterblue;
+        display: block;
+        font-size: 1em;
+        left: 0;
+        position: absolute;
+        top: 1px;
+        transform: rotate(-4deg);
+        width: 66%;
+      }
+      .book-icon,
+      .cancel-icon,
+      .occupy-icon,
+      .top-hour,
+      .quart-hour,
+      .half-hour,
+      .end-hour,
+      .xloser {
+        background: transparent;
+        background-image: url('img/book.svg');
+        background-repeat: no-repeat;
+        display: inline-block;
+        padding: 0;
+       }
+      .xloser {
+        background-position: -31px -4px;
+        background-size: 60px 60px;
+        height: 30x;
+        position: absolute;
+        right: 10px;
+        top: 0px;
+        width: 30px;
+      }
+      .xloser:hover {
+        background-position: -30px -34px;
+        cursor: pointer;
+      }
+      .book-icon {
+        background: transparent;
+        background-image: url('img/book.svg');
+        background-position: -4px -30px;
+        background-size: 60px 60px;
+        height: 30px;
+        position: absolute;
+        left: 1%;
+        top: 1%;
+        width: 30px;
+      }
+      .book-icon:hover {
+        background-position: -4px -1px;
+        cursor: pointer;
+      }
+    }
+   
+    .book-segment {
+      background: transparent;
+      border-top: none;
+      border-bottom: none;
+      border-left: none;
+      border-right: none;
+      display: inline-block;
+      font-size: .9em;
+      margin-left: 20px;
+      position: relative;
+      transition: all 3s;
+      width: 90% !important;
+    }
+    .tophour {
+      color: $lb-seablue;
+      font-weight: 600;
+    }
+    .over {
+      text-decoration: line-through;
+    }
+  }
+}
+
+#lightbox_wrap{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: $lb_seablue;
+  z-index: +9;
+  #lb_dialog{
+    background: $lb_blak;
+    color: $lb_waterblue;
+    width: 50%;
+    height: 50%;
+    margin: 0 auto;
+    h2{
+      color: $lb_gold;
+      font-size: 2em;
+      text-align: center;
+    }
+    .user-msg-wrap{
+      margin: 0px auto;
+      width: 70%;
+    }
+    .xloser{
+      color: $lb_blak;
+      background: $lb_waterblue;
+      padding: 10px;
+      border-radius: 2px;
+      width: 100px;
+      text-align: center;
+    }
+    .xloser:hover,
+    .xloser:focus
+    {
+      cursor: pointer;
+      background: $lb_seablue;
+    }
+  }
+}
+
+@media only screen and (max-width: 520px){
+  #fndry_launcher{
+    bottom: 45px !important;
+  }
+  #lightbox_wrap{
+    #lb_dialog{
+      width: 80%;
+      height: 100%;
+     }
+  }
+  .week-wrap {
+    margin-top: 60px !important;
+  }
+}
+@media only screen and (max-width: 520px),
+(min-width: 500px) and (max-width: 1024px) {
+.weekday {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  .hourwrap {
+    width: 100%;
+    div {
+      font-size: 1.4em;
+      line-height: 1.5em;
+      width: 100%;
+      .book-icon {
+        border: 0 transparent solid;
+        height: 40px;
+        position: absolute;
+        right: 10%;
+        top: 4%;
+        width: 40px;
+      }
+      .book-icon:hover {
+        background-position: -7px -46px;
+      }
+      .xloser {
+        background-position: -53px -1px;
+        background-size: 90px 90px;
+        border: 0 transparent solid;
+        height: 40px;
+        position: absolute;
+        right: 10%;
+        top: 4%;
+        width: 40px;
+      }
+    }
+  }
+}
