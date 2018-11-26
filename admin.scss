@@ -1,14 +1,23 @@
-$lb-glass: rgba(255,255,255,.15);
+
 $lb-waterblue: #adf4ff;
-$lb-poolblue: #82cfcf;
+$lb-wpblue: #006679;
 $lb-poolglass: rgba(130,207,207,.5);
 $lb-seablue:  #0080df;
 $lb-gold: #ee9900;
+$hotdesk:#ef5b0a;
+$parttime:#c4ed76;
+$dedicated:#22201e;
+$office: #081cdc;
+$staff:#cccccc;
+$event:#f549b6;
+$guest: #efc70a;
 $lb-alert: #cc0000;
-
 $lb-blak: #000;
+$lb-white: #fcf7e4;
+$lb-glass: rgba(255,255,255,.15);
 $lb-grey:  rgba(0, 0, 0, .80);
 $lb-dkgrey: rgba(34, 34, 34, .90);
+
 @keyframes twister {
   0%{  
     -webkit-transform: rotate(0deg);
@@ -28,114 +37,129 @@ $lb-dkgrey: rgba(34, 34, 34, .90);
 }
 
 #expirez{
+  animation: twister 1s 0s; 
   color: $lb-seablue;
   font-size: 7em;
-  text-align: center;
   padding: 5%;
   height: 100%;
   position: fixed;
+  text-align: center;
   top: 0px;
   width: 100%;
   z-index: +9;
-  animation: twister 1s 0s; 
 }
-div h3{
-  color:  $lb-seablue;
-  font-weight: 700;
-  font-size: 1.4em;
-}
-div h4{
-  font-weight: 500;
-  font-size: 1.2em;
-}
-div h4::before{
-  content: "\002B ";
+div{ 
+  h3{
+    color:  $lb-seablue;
+    font-weight: 700;
+    font-size: 1.4em;
+  }
+  h4{
+    font-weight: 500;
+    font-size: 1.2em;
+  }
+  h4::before{
+    content: "\002B ";
+  }
 }
 .user-status{
   border-radius: 10px;
   border: 2px solid transparent;
-  color: #000;
+  color:$lb-blak;
   display: inline-block;
   height: 30px;
   margin: 10px;
   text-align: center;
   width: 100px;
+    select{
+      display: block;
+      font-size: .9em;
+      height: 20px;
+      margin : 0px auto;
+   }
  }
- .user-status select{
-  display: block;
-  font-size: .9em;
-  height: 20px;
-  margin : 0px auto;
- }
+
+
 .member-hotdesk{
-  background: #ef5b0a;
-  color:  #fcf7e4;
+  background: $hotdesk;
+  color: $lb-white;
 } 
 .member-dedicated{
-background: #22201e;
-color:  #efc70a;
+background: $dedicated;
+color:  $lb-white;;
 }
 .member-parttime{
-background: #c4ed76;
-color:#22201e;
+background: $parttime;
+color:$lb-blak;
 }
 .member-office{
-background: #081cdc;
-color: #fcf7e4;
+background: $office;
+color: $lb-white;
 }
 .member-guest{
-background: #efc70a;
-color: #081cdc;
+background: $guest;
+color: $lb-blak;
 }
 .member-staff{
-background: #999999;
-color: #ffffff;
+background: $staff;
+color: $lb-white;
 }
 .member-event{
-background: #f549b6;
-color: #fcf7e4;
+background:$event;
+color: $lb-white;
 }
 .member-banned{
-background: #ff0000;
-color: #fff;
+background: $lb-alert;
+color: $lb-white;
+}
+
+.border-hotdesk{
+border-color: $hotdesk;
 }
 .border-dedicated{
-border-color: #22201e;
+border-color: $dedicated;
 }
 .border-parttime{
-border-color: #c4ed76;
+border-color: $parttime;
 }
 .border-office{
-border-color: #081cdc;
+border-color: $office;
 }
 .border-guest{
-border-color: #efc70a;
+border-color: $guest;
 }
 .border-staff{
-border-color: #999999;
+border-color: $staff;
 }
 .border-event{
-border-color: #f549b6;
+border-color: $event;
 }
 .border-banned{
-border-color: #ff0000;
+border-color: $lb-alert;
 }
-#all-users div{
- display: flex;
- flex-direction: row;
+
+
+#all-users{
+  div{
+    display: flex;
+    flex-direction: row;
+    ul{
+      flex-grow: 1;
+      flex-basis: 0;
+      font-size: 1.25em;
+    }
+  }
 }
-#all-users div ul{
-  flex-grow: 1;
-  flex-basis: 0;
-  font-size: 1.25em;
-}
+
+
 #user-selectr{
- display: flex;
- flex-direction: row;
+  display: flex;
+  flex-direction: row;
+  button{
+    flex-grow: 1;
+  }
 }
-#user-selectr button{
- flex-grow: 1;
-}
+
 .user-status {
   border-width: 2px;
   border-style: dashed ;
@@ -146,17 +170,18 @@ border-color: #ff0000;
   cursor: pointer;
 }
 button.fndry{
-  border: 2px solid #000;
+  border: 2px solid $lb-blak;
   margin: 20px;
 }
-#time-editor, #truncate-log, #cancel-truncate-log{
+#time-editor, 
+#truncate-log, #cancel-truncate-log{
   background:$lb-seablue;
-  border-color: #0073aa #006799 #006799;
-  box-shadow: 0 1px 0 #006799;
-  color: #fff;
+  border-color: $lb-seablue $lb-wpblue $lb-wpblue;
+  box-shadow: 0 1px 0 $lb-wpblue;
+  color: $lb-white;
   margin: 20px;
   text-decoration: none;
-  text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799;
+  text-shadow: 0 -1px 1px $lb-wpblue, 1px 0 1px $lb-wpblue, 0 1px 1px $lb-wpblue, -1px 0 1px $lb-wpblue;
 }
 #time-editor:hover, #truncate-log:hover{
   cursor: pointer;
@@ -174,8 +199,8 @@ button.fndry{
   top:0px;
 }
 .edit-user{
-  background: rgba(255,255,255,.4);
-  color: #000;
+  background:$lb-glass;
+  color: $lb-blak;
   border-radius: 2px;
   display: block;
   font-size: .8em;
@@ -186,7 +211,7 @@ button.fndry{
   cursor: pointer;
 }
 .lb-wrap {
-  background: rgba(242, 242, 242, 0.75);
+  background: $lb-glass;
   height: 100%;
   position: fixed;
   width: 100%;
@@ -195,7 +220,7 @@ button.fndry{
 .lb-dialog {
   background: white;
   border-radius: 4px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 2px $lb-glass;
   font-size: 14px;
   margin: 1% auto;
   max-height: 700px;
@@ -209,11 +234,11 @@ button.fndry{
 #setup-wrap article{
   margin: 10px;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid $lb-grey;
 }
 #room-editor li{
-  background: #000;
-  color: #fff;
+  background: $lb-blak;
+  color: $lb-white;
   display: inline-block;
   margin-left: 40px;
 }
@@ -229,22 +254,22 @@ button.fndry{
 #room-editor li input[type='button']{
   width: 15px;
   height: 22px;
-  color: #ff0000;
+  color: $lb-alert;
   padding: 0px;
   font-weight: 300;
   margin-left: 10px;
 }
 #room-editor li input[type='button']:hover{
-  background: #ffcc00;
+  background: $hotdesk;
   cursor: pointer;
 }
 .room-deletr{
-   color: #ff0000;
+   color: $lb-alert;
   padding: 0px;
   font-weight: 800;
 }
 .no{
-  color: #0000cc;
+  color: $office;
   padding: 0px 30px;
   font-weight: 800;
 }
@@ -253,26 +278,25 @@ button.fndry{
   cursor: pointer;
 }
 .fndry-cancel{
-  color : #cc0000;
+  color : $lb-alert;
 }
 .time-cancel{
-  border: #cc0000  1px solid !important;
-  background: #000;
-  color: #000000;
+  border: $lb-alert  1px solid !important;
+  background: $lb-blak;
   line-height: 10px !important;
   height: 28px !important;
   padding: 5px !important;
 }
 .room-start{
-  background:  rgba(55,255,255, .1);
+  background: $lb-glass;
   color: $lb-seablue;
   font-weight: 700;
   font-size: 1.5em;
   text-align: center;
 }
 .newuser{
-  background: rgba(55,255,255, .3);
+  background: $lb-grey;
 }
 .sameuser{
-  background:  rgba(55,255,255, .1);
+  background: $lb-dkgrey;
 }

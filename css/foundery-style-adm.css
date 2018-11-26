@@ -13,26 +13,24 @@
     transform: rotate(-12deg);
     font-size: .1em; } }
 #expirez {
+  animation: twister 1s 0s;
   color: #0080df;
   font-size: 7em;
-  text-align: center;
   padding: 5%;
   height: 100%;
   position: fixed;
+  text-align: center;
   top: 0px;
   width: 100%;
-  z-index: +9;
-  animation: twister 1s 0s; }
+  z-index: +9; }
 
 div h3 {
   color: #0080df;
   font-weight: 700;
   font-size: 1.4em; }
-
 div h4 {
   font-weight: 500;
   font-size: 1.2em; }
-
 div h4::before {
   content: "\002B "; }
 
@@ -45,12 +43,11 @@ div h4::before {
   margin: 10px;
   text-align: center;
   width: 100px; }
-
-.user-status select {
-  display: block;
-  font-size: .9em;
-  height: 20px;
-  margin: 0px auto; }
+  .user-status select {
+    display: block;
+    font-size: .9em;
+    height: 20px;
+    margin: 0px auto; }
 
 .member-hotdesk {
   background: #ef5b0a;
@@ -58,11 +55,11 @@ div h4::before {
 
 .member-dedicated {
   background: #22201e;
-  color: #efc70a; }
+  color: #fcf7e4; }
 
 .member-parttime {
   background: #c4ed76;
-  color: #22201e; }
+  color: #000; }
 
 .member-office {
   background: #081cdc;
@@ -70,19 +67,22 @@ div h4::before {
 
 .member-guest {
   background: #efc70a;
-  color: #081cdc; }
+  color: #000; }
 
 .member-staff {
-  background: #999999;
-  color: #ffffff; }
+  background: #cccccc;
+  color: #fcf7e4; }
 
 .member-event {
   background: #f549b6;
   color: #fcf7e4; }
 
 .member-banned {
-  background: #ff0000;
-  color: #fff; }
+  background: #cc0000;
+  color: #fcf7e4; }
+
+.border-hotdesk {
+  border-color: #ef5b0a; }
 
 .border-dedicated {
   border-color: #22201e; }
@@ -97,29 +97,27 @@ div h4::before {
   border-color: #efc70a; }
 
 .border-staff {
-  border-color: #999999; }
+  border-color: #cccccc; }
 
 .border-event {
   border-color: #f549b6; }
 
 .border-banned {
-  border-color: #ff0000; }
+  border-color: #cc0000; }
 
 #all-users div {
   display: flex;
   flex-direction: row; }
-
-#all-users div ul {
-  flex-grow: 1;
-  flex-basis: 0;
-  font-size: 1.25em; }
+  #all-users div ul {
+    flex-grow: 1;
+    flex-basis: 0;
+    font-size: 1.25em; }
 
 #user-selectr {
   display: flex;
   flex-direction: row; }
-
-#user-selectr button {
-  flex-grow: 1; }
+  #user-selectr button {
+    flex-grow: 1; }
 
 .user-status {
   border-width: 2px;
@@ -134,14 +132,15 @@ button.fndry {
   border: 2px solid #000;
   margin: 20px; }
 
-#time-editor, #truncate-log, #cancel-truncate-log {
+#time-editor,
+#truncate-log, #cancel-truncate-log {
   background: #0080df;
-  border-color: #0073aa #006799 #006799;
-  box-shadow: 0 1px 0 #006799;
-  color: #fff;
+  border-color: #0080df #006679 #006679;
+  box-shadow: 0 1px 0 #006679;
+  color: #fcf7e4;
   margin: 20px;
   text-decoration: none;
-  text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799; }
+  text-shadow: 0 -1px 1px #006679, 1px 0 1px #006679, 0 1px 1px #006679, -1px 0 1px #006679; }
 
 #time-editor:hover, #truncate-log:hover {
   cursor: pointer; }
@@ -159,7 +158,7 @@ button.fndry {
   top: 0px; }
 
 .edit-user {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.15);
   color: #000;
   border-radius: 2px;
   display: block;
@@ -171,7 +170,7 @@ button.fndry {
   cursor: pointer; }
 
 .lb-wrap {
-  background: rgba(242, 242, 242, 0.75);
+  background: rgba(255, 255, 255, 0.15);
   height: 100%;
   position: fixed;
   width: 100%;
@@ -180,7 +179,7 @@ button.fndry {
 .lb-dialog {
   background: white;
   border-radius: 4px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.15);
   font-size: 14px;
   margin: 1% auto;
   max-height: 700px;
@@ -194,11 +193,11 @@ button.fndry {
 #setup-wrap article {
   margin: 10px;
   padding: 10px;
-  border: 1px solid #ccc; }
+  border: 1px solid rgba(0, 0, 0, 0.8); }
 
 #room-editor li {
   background: #000;
-  color: #fff;
+  color: #fcf7e4;
   display: inline-block;
   margin-left: 40px; }
 
@@ -214,22 +213,22 @@ button.fndry {
 #room-editor li input[type='button'] {
   width: 15px;
   height: 22px;
-  color: #ff0000;
+  color: #cc0000;
   padding: 0px;
   font-weight: 300;
   margin-left: 10px; }
 
 #room-editor li input[type='button']:hover {
-  background: #ffcc00;
+  background: #ef5b0a;
   cursor: pointer; }
 
 .room-deletr {
-  color: #ff0000;
+  color: #cc0000;
   padding: 0px;
   font-weight: 800; }
 
 .no {
-  color: #0000cc;
+  color: #081cdc;
   padding: 0px 30px;
   font-weight: 800; }
 
@@ -241,24 +240,23 @@ button.fndry {
   color: #cc0000; }
 
 .time-cancel {
-  border: #cc0000  1px solid !important;
+  border: #cc0000 1px solid !important;
   background: #000;
-  color: #000000;
   line-height: 10px !important;
   height: 28px !important;
   padding: 5px !important; }
 
 .room-start {
-  background: rgba(55, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
   color: #0080df;
   font-weight: 700;
   font-size: 1.5em;
   text-align: center; }
 
 .newuser {
-  background: rgba(55, 255, 255, 0.3); }
+  background: rgba(0, 0, 0, 0.8); }
 
 .sameuser {
-  background: rgba(55, 255, 255, 0.1); }
+  background: rgba(34, 34, 34, 0.9); }
 
 /*# sourceMappingURL=foundery-style-adm.css.map */

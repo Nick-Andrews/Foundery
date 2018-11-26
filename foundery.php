@@ -2,7 +2,7 @@
 /*
 Plugin name: The Foundery Co-Work Booking System.
 Plugin URI: http://www.websolutions.to
-Description: A boardroom and reservation space room booking system for co-working. Initally created for The Foundery Toronto; the original co-work space in Toronto Canada. This software has been released now one year after the closing.
+Description: A boardroom and reservation space room booking system for co-working. Initially created for The Foundery Toronto; the original co-work space in Toronto, Canada. This software has been released now one year after the closing.
 Author: Nick Andrews: Onsite Community Co-Ordinator 2016-2017, The Foundery, Toronto Canada.
 Tags: Co-working Toronto, Co-Work Reservation Booking System, The Foundery Toronto.
 Date: 2018-11-31
