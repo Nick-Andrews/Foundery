@@ -4,10 +4,11 @@ class core {
 	protected		$xml;
 	protected		$wp_nonce;
 	public			$errors;
-	public          $maxseg = array();
+	public 			$maxseg = array();
 	public 			$segment;
 	const  			REGEXP_INT	=  "/^[0-9]+$/i";
-	/*Class constructor
+	/*
+	*Class constructor
 	*/ 
 	function __construct() {
    		$this->errors = false;
