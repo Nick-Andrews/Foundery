@@ -5,7 +5,8 @@ class setup_room extends \foundery\core {
 	public $day_open;
 	public $segments_hour;
 	public $advance_weeks;
-	/*Class constructor
+	/**
+	 * Class constructor
 	*/ 
 	function setup_room(){
 		$this->dom = new DOMDocument();

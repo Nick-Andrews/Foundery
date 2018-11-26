@@ -6,7 +6,6 @@ class core {
 	public			$errors;
 	public          $maxseg = array();
 	public 			$segment;
-
 	const  			REGEXP_INT	=  "/^[0-9]+$/i";
 	/*Class constructor
 	*/ 
