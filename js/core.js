@@ -59,27 +59,25 @@ var BK = {
 	setnow: function(){
 		this.epochtime = Date.now();
 		this.now = new Date( this.epochtime );
-    	this.y = this.now.getFullYear();
-    	this.m = this.now.getMonth()+1;
-    	this.d = this.now.getDate();
-    	this.h = this.now.getHours();
-    	this.min = this.now.getMinutes();
-    	this.sec = this.now.getSeconds();
-    	this.days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+		this.y = this.now.getFullYear();
+		this.m = this.now.getMonth()+1;
+		this.d = this.now.getDate();
+		this.h = this.now.getHours();
+		this.min = this.now.getMinutes();
+		this.sec = this.now.getSeconds();
+		this.days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 		this.months = ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"];
 		this.weekday = this.days [this.now.getDay()];
 		this.month = this.months[this.m-1];
-    	this.weekstart =  (this.epochtime - ( this.now.getDay() * this.DAY_INC))+(  this.weekinc  * 7 * this.DAY_INC) ;
-    	
-	    	setTimeout( function(){
-				if( BK.onoff ) {
-					BK.setnow(true);
-					BK.week_layout();
-					BK.get_calendar_bookings();
-				}
-	    	},60000);
-	    
-	},
+		this.weekstart =  (this.epochtime - ( this.now.getDay() * this.DAY_INC))+(  this.weekinc  * 7 * this.DAY_INC) ;
+    	setTimeout( function(){
+			if( BK.onoff ) {
+				BK.setnow(true);
+				BK.week_layout();
+				BK.get_calendar_bookings();
+			}
+    	},60000);
+  	},
 	/**
 	 * Ajax call to retrieve wordpress nonce string
 	 * @return {null}  
@@ -614,7 +612,6 @@ var BK = {
 					nodewrap =  document.createElement( "div");	
 					nodewrap.setAttribute("id","t-"+this.days[thour.getDay()]+"-"+thour.getHours()+"-"+(mins*BK.segment));
 					nodewrap.setAttribute("class","hour-segment");
-					
 					node = document.createElement( "div");	
 					node.setAttribute("id","s-"+thour.getFullYear()+"-"+(thour.getMonth()+1)+"-"+thour.getDate()+"-"+thour.getHours()+"-"+(mins*BK.segment));
 					node.setAttribute("class","book-segment "+cls);
