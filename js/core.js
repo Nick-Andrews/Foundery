@@ -70,13 +70,13 @@ var BK = {
 		this.weekday = this.days [this.now.getDay()];
 		this.month = this.months[this.m-1];
 		this.weekstart =  (this.epochtime - ( this.now.getDay() * this.DAY_INC))+(  this.weekinc  * 7 * this.DAY_INC) ;
-    	setTimeout( function(){
+		setTimeout( function(){
 			if( BK.onoff ) {
 				BK.setnow(true);
 				BK.week_layout();
 				BK.get_calendar_bookings();
 			}
-    	},60000);
+		},60000);
   	},
 	/**
 	 * Ajax call to retrieve wordpress nonce string
@@ -224,11 +224,11 @@ var BK = {
 	update_week_dates: function(start){
 		var week = new Date(start);
 		this.y = week.getFullYear();
-    	this.m = week.getMonth()+1;
-    	this.d = week.getDate();
-    	this.h = week.getHours();
-    	this.min = week.getMinutes();
-    	this.sec = week.getSeconds();
+		this.m = week.getMonth()+1;
+		this.d = week.getDate();
+		this.h = week.getHours();
+		this.min = week.getMinutes();
+		this.sec = week.getSeconds();
 		jQuery(".day-title").hide();
 			for ( var i = 0 ; i < 7; i++){ ///day iteration
 				var dtoggler = document.getElementById("toggle-"+this.days[i]);
@@ -579,7 +579,6 @@ var BK = {
 						hourwrap.setAttribute("class","hourwrap");
 						hourwrap.setAttribute("id", this.days[thour.getDay()]+"-"+(this.amstart+(j/(60 /BK.segment)))+"");
 						hourwrap.setAttribute("id", this.days[thour.getDay()]+"-"+(this.amstart+(j/(60 /BK.segment)))+"");
-			
 					}
 					if ( this.now.getDate() == thour.getDate() ){///is today
 						if(  this.now.getHours() >=  thour.getHours()) { ///past hours time
