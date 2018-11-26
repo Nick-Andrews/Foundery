@@ -4,7 +4,7 @@
  */
 var FU ={
 	/**
-	 * Creates actions events for Lightbox UI for changing a non-status user to a status type in Foundery System
+	 * Creates actions events for lightbox UI for changing a non-status user to a status type in Foundery System
 	 * @param  {array} nons   , jQuery array of DOM elelemts for no-status members
 	 * @param  {object} params,  object representing status types "hottdesk", "dedidcated"... 
 	 * @return {null} 
