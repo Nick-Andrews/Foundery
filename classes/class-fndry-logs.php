@@ -151,10 +151,8 @@ class fndry_logs extends \foundery\core {
 	?>	
 		<script>
 			function clear_check(){
-				console.log( "cle")
 				var n = jQuery(".time-cancel");
 				for( var i=0,l=n.length; i<l ; i++){
-				
 					n[i].checked= false
 				}
 			}
