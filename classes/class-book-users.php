@@ -15,7 +15,7 @@ class book_users extends \foundery\core {
 		}
 	}
 	/**
-	 * Get users who have logins for the WP site but are not in Foundery system
+	 * Get users who have logins for the Wordpress site but are not yet in Foundery system
 	 * @return [object] WP query result
 	 */
 	function get_nonstatus_users(){
@@ -41,7 +41,7 @@ class book_users extends \foundery\core {
 		$this->dom->getElementById($d->status."-user-wrap")->appendChild($wrap);
 	}
 	/**
-	 * Displays a DOM element LI representing a non user, but is a registered WP user, in the Foundery system 
+	 * Displays a DOM element LI representing a non-user, but, is a registered Wordpress user, in the Foundery system 
 	 * @param  [Object] $d data object containgn user data
 	 * @return [null]    
 	 */
@@ -55,7 +55,7 @@ class book_users extends \foundery\core {
 
 	}
 	/**
-	 * Set up some inline javascript for the Foundery UI
+	 * Set up some inline javascript for the Foundery UI in the Wordpress admin panel
 	 * @return [null] 
 	 */
 	function inline_javascript(){
@@ -70,17 +70,6 @@ window.onload = function(){
 }
 </script>
 <?php
-	}
-	/**
-	 * Update a users status in the Foundery system
-	 * @param  [int] $id  Foundery system user id, not the WP id
-	 * @param  [string] $type , Status type for the user"
-	 * @return [null]     
-	 */
-	function user_status_update($id, $type){
-		global $wpdb;
-		$query = "UPDATE ".$wpdb->prefix."FNDRY_bookusers SET status = '".$type."' WHERE userID = '".$id."' ;";
-		$wpdb->query($query);
 	}
 	/**
 	 * Presently unused method to track user bokking history
@@ -113,7 +102,18 @@ window.onload = function(){
 		return false;
 	}
 	/**
-	 * Update a users status in the Foundery system
+	 * Update a users status in the Foundery system DB tuple referencing Foundery userid
+	 * @param  [int] $id  Foundery system user id, not the WP id
+	 * @param  [string] $type , Status type for the user"
+	 * @return [null]     
+	 */
+	function user_status_update($id, $type){
+		global $wpdb;
+		$query = "UPDATE ".$wpdb->prefix."FNDRY_bookusers SET status = '".$type."' WHERE userID = '".$id."' ;";
+		$wpdb->query($query);
+	}
+	/**
+	 * Update a users status in the Foundery system DB tuple referencing Woprdpress userid
 	 * @param  [int] $id  Foundery system user id, not the WP id
 	 * @param  [string] $type , Status type for the user"
 	 * @return [null]     
@@ -146,7 +146,7 @@ window.onload = function(){
 		}
 	}
 	/**
-	 * Create DOM elements for presenting the users by status 
+	 * Create DOM elements for presenting the users by Foundery system status 
 	 * @return [null] 
 	 */
 	function create_holders(){

@@ -1,6 +1,9 @@
+/**
+ * an equality test for an undefined object I will use
+ */
 var nuller;
 /**
- * Dynamic Booking Calendar for foundery boardroom 
+ * Dynamic Booking Calendar Object for reserving assets in co-working spaces 
  * @type {Object}
  * 
  */
@@ -98,7 +101,7 @@ var BK = {
 	     }
 	},
 	/**
-	 * catch nonce object switch parseing based on XML or server sent type
+	 * catch wp nonce object and switch parsing based on XML or server sent type
 	 * @param  {server sent data event} e , wp_nonce char string if available
 	 * @return {null}  
 	 */
@@ -119,8 +122,8 @@ var BK = {
 	},
 
 	/**
-	 * Ajax call to retrieve booking system users status 
-	 * @return { data / xml object} user wordpress status[member , staff, banned, prospect]
+	 * Ajax call to retrieve booking system user status 
+	 * @return { data / xml object} user wordpress status[hottdesk, staff, banned, prospect...]
 	 * @return {null}  
 	 */
 	get_me_status: function(){
@@ -139,7 +142,7 @@ var BK = {
 	    }
 	},
 	/**
-	 * catch data and switch parseing based on XML or server sent type
+	 * catch data and switch parsing based on XML or server sent type
 	 * @param  {server sent data event} e , users status in booking system
 	 * @return {null}  
 	 */
@@ -250,7 +253,6 @@ var BK = {
 	 */
 	update_calendar: function(d){
 		if( ! BK.onoff ) return;
-		
 		var tots = jQuery( ".mytotals");
 		for ( var j = 0; j < tots.length; j++){
 			tots[j].rel = BK.maxhours;
