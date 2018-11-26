@@ -79,63 +79,62 @@ div{
    }
  }
 
-
 .member-hotdesk{
   background: $hotdesk;
   color: $lb-white;
 } 
 .member-dedicated{
-background: $dedicated;
-color:  $lb-white;;
+  background: $dedicated;
+  color:  $lb-white;;
 }
 .member-parttime{
-background: $parttime;
-color:$lb-blak;
+  background: $parttime;
+  color:$lb-blak;
 }
 .member-office{
-background: $office;
-color: $lb-white;
+  background: $office;
+  color: $lb-white;
 }
 .member-guest{
-background: $guest;
-color: $lb-blak;
+  background: $guest;
+  color: $lb-blak;
 }
 .member-staff{
-background: $staff;
-color: $lb-white;
+  background: $staff;
+  color: $lb-white;
 }
 .member-event{
-background:$event;
-color: $lb-white;
+  background:$event;
+  color: $lb-white;
 }
 .member-banned{
-background: $lb-alert;
-color: $lb-white;
+  background: $lb-alert;
+  color: $lb-white;
 }
 
 .border-hotdesk{
-border-color: $hotdesk;
+  border-color: $hotdesk;
 }
 .border-dedicated{
-border-color: $dedicated;
+  border-color: $dedicated;
 }
 .border-parttime{
-border-color: $parttime;
+  border-color: $parttime;
 }
 .border-office{
-border-color: $office;
+  border-color: $office;
 }
 .border-guest{
-border-color: $guest;
+  border-color: $guest;
 }
 .border-staff{
-border-color: $staff;
+  border-color: $staff;
 }
 .border-event{
-border-color: $event;
+  border-color: $event;
 }
 .border-banned{
-border-color: $lb-alert;
+  border-color: $lb-alert;
 }
 
 
@@ -174,7 +173,8 @@ button.fndry{
   margin: 20px;
 }
 #time-editor, 
-#truncate-log, #cancel-truncate-log{
+#truncate-log, 
+#cancel-truncate-log{
   background:$lb-seablue;
   border-color: $lb-seablue $lb-wpblue $lb-wpblue;
   box-shadow: 0 1px 0 $lb-wpblue;
@@ -183,7 +183,9 @@ button.fndry{
   text-decoration: none;
   text-shadow: 0 -1px 1px $lb-wpblue, 1px 0 1px $lb-wpblue, 0 1px 1px $lb-wpblue, -1px 0 1px $lb-wpblue;
 }
-#time-editor:hover, #truncate-log:hover{
+#time-editor:hover, 
+#truncate-log:hover,
+#cancel-truncate-log:hover{
   cursor: pointer;
 }
 #truncate-log{
@@ -231,40 +233,46 @@ button.fndry{
   text-align: center;
   width: 50%; 
 }
-#setup-wrap article{
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid $lb-grey;
+#setup-wrap{
+  article{
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid $lb-grey;
+  }
 }
-#room-editor li{
-  background: $lb-blak;
-  color: $lb-white;
-  display: inline-block;
-  margin-left: 40px;
+#room-editor {
+  li{
+    background: $lb-blak;
+    color: $lb-white;
+    display: inline-block;
+    margin-left: 40px;
+    input[type='button']{
+      width: 15px;
+      height: 22px;
+      color: $lb-alert;
+      padding: 0px;
+      font-weight: 300;
+      margin-left: 10px;
+    }
+  }
+  li:hover{
+    cursor: pointer;
+    input[type='button']:hover{
+      background: $hotdesk;
+      cursor: pointer;
+    }
+  }
+
 }
-#room-editor li:hover{
-  cursor: pointer;
-}
+
 .roomstats{
   text-align: left;
-}
-.roomstats td{
-  padding: 10px;
-}
-#room-editor li input[type='button']{
-  width: 15px;
-  height: 22px;
-  color: $lb-alert;
-  padding: 0px;
-  font-weight: 300;
-  margin-left: 10px;
-}
-#room-editor li input[type='button']:hover{
-  background: $hotdesk;
-  cursor: pointer;
+  td{
+    padding: 10px;
+  }
 }
 .room-deletr{
-   color: $lb-alert;
+  color: $lb-alert;
   padding: 0px;
   font-weight: 800;
 }

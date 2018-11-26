@@ -133,7 +133,8 @@ button.fndry {
   margin: 20px; }
 
 #time-editor,
-#truncate-log, #cancel-truncate-log {
+#truncate-log,
+#cancel-truncate-log {
   background: #0080df;
   border-color: #0080df #006679 #006679;
   box-shadow: 0 1px 0 #006679;
@@ -142,7 +143,9 @@ button.fndry {
   text-decoration: none;
   text-shadow: 0 -1px 1px #006679, 1px 0 1px #006679, 0 1px 1px #006679, -1px 0 1px #006679; }
 
-#time-editor:hover, #truncate-log:hover {
+#time-editor:hover,
+#truncate-log:hover,
+#cancel-truncate-log:hover {
   cursor: pointer; }
 
 #truncate-log {
@@ -200,27 +203,23 @@ button.fndry {
   color: #fcf7e4;
   display: inline-block;
   margin-left: 40px; }
-
+  #room-editor li input[type='button'] {
+    width: 15px;
+    height: 22px;
+    color: #cc0000;
+    padding: 0px;
+    font-weight: 300;
+    margin-left: 10px; }
 #room-editor li:hover {
   cursor: pointer; }
+  #room-editor li:hover input[type='button']:hover {
+    background: #ef5b0a;
+    cursor: pointer; }
 
 .roomstats {
   text-align: left; }
-
-.roomstats td {
-  padding: 10px; }
-
-#room-editor li input[type='button'] {
-  width: 15px;
-  height: 22px;
-  color: #cc0000;
-  padding: 0px;
-  font-weight: 300;
-  margin-left: 10px; }
-
-#room-editor li input[type='button']:hover {
-  background: #ef5b0a;
-  cursor: pointer; }
+  .roomstats td {
+    padding: 10px; }
 
 .room-deletr {
   color: #cc0000;
