@@ -1,5 +1,5 @@
 /**
- * an equality test for an undefined object I will use
+ * an undefined var reference used to test for an undefined var
  */
 var nuller;
 /**
@@ -41,7 +41,7 @@ var BK = {
 	s_feed : null,
 	cal_feed: null,
 	/**
-	 * Shuts off the recursive loop updating claendar data
+	 * Shuts off the recursive loop updating calendar data
 	 * @return {null} 
 	 */
 	turn_off: function(){
@@ -86,7 +86,6 @@ var BK = {
 	 	if ( window.EventSource){
 	    	if ( this.n_feed  != nuller ) { this.n_feed.close(); }
 	    	this.n_feed = new EventSource("?nfeed="+BK.myemail);
-	    	console.log( "?nfeed="+BK.myemail);
 	     	this.n_feed.onmessage  =  this.receive_nonce;
 	    }else{
 	    	if ( this.n_feed  != nuller ) { this.n_feed.abort(); }

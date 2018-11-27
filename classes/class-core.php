@@ -54,21 +54,24 @@ class core {
    	 */
    	function get_status($email){
    		global $wpdb;
-   		$query = "SELECT status 
-   		FROM ".$wpdb->prefix."FNDRY_bookusers 
-   		WHERE email ='".$email."';";
-   		$res = $wpdb->get_results($query);
-   		if ( isset($res[0])){
-			$tme =json_decode(  get_option("fndry-time-params"));
-			$temp = $res[0]->status;
-	   		if($tme){
-	   			$res[] = $tme->maxhours->$temp;
+   	
+		if( is_user_logged_in()){   		
+	   		$query = "SELECT status 
+	   		FROM ".$wpdb->prefix."FNDRY_bookusers 
+	   		WHERE email ='".$email."';";
+	   		$res = $wpdb->get_results($query);
+	   		if ( isset($res[0])){
+				$tme =json_decode(  get_option("fndry-time-params"));
+				$temp = $res[0]->status;
+		   		if($tme){
+		   			$res[] = $tme->maxhours->$temp;
+		   		}
+				$this->feed_me($res);
+				return true;
 	   		}
-			$this->feed_me($res);
-			return true;
-   		}
-   		$this->feed_me("null");
-		return false;
+	   		$this->feed_me("null");
+			return false;
+	   	}
    	}
    	/**
    	 * Creates and returns a wp nonce code via ajax
@@ -77,19 +80,15 @@ class core {
    	 */
 	function get_nonce($email){
    		global $wpdb;
-   		$query = "SELECT userID, fbID, wpID, inID FROM ".$wpdb->prefix."FNDRY_bookusers WHERE email ='".$email."';";
+   		$query = "SELECT userID,  wpID FROM ".$wpdb->prefix."FNDRY_bookusers WHERE email ='".$email."';";
    		$res = $wpdb->get_results($query);
-   		if ( isset($res[0])){
-			if (strlen( $res[0]->fbID)>1 ){
-				$nonce = wp_create_nonce( sha1($res[0]->fbID.$res[0]->userID."fndry")  );
-			}else if (strlen( $res[0]->inID)> 1 ){
-				$nonce = wp_create_nonce( sha1($res[0]->inID.$res[0]->userID."fndry")  );
-			}else{
+		if( is_user_logged_in()){   		
+	   		if ( isset($res[0])){
 				$nonce = wp_create_nonce( sha1($res[0]->wpID.$res[0]->userID."fndry")  );
-			}
-			$this->feed_me($nonce);
-			return true;
-   		}
+				$this->feed_me($nonce);
+				return true;
+	   		}
+	   	}
    		$this->feed_me("null");
 		return false;
    	}
