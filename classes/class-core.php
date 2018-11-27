@@ -80,9 +80,9 @@ class core {
    	 */
 	function get_nonce($email){
    		global $wpdb;
-   		$query = "SELECT userID,  wpID FROM ".$wpdb->prefix."FNDRY_bookusers WHERE email ='".$email."';";
-   		$res = $wpdb->get_results($query);
-		if( is_user_logged_in()){   		
+		if( is_user_logged_in()){  
+	   		$query = "SELECT userID,  wpID FROM ".$wpdb->prefix."FNDRY_bookusers WHERE email ='".$email."';";
+	   		$res = $wpdb->get_results($query);
 	   		if ( isset($res[0])){
 				$nonce = wp_create_nonce( sha1($res[0]->wpID.$res[0]->userID."fndry")  );
 				$this->feed_me($nonce);
