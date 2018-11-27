@@ -1,5 +1,5 @@
 /**
- * an undefined var reference used to test for an undefined var
+ * An undefined var reference used to test for an undefined var
  */
 var nuller;
 /**
