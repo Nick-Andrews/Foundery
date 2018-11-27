@@ -202,8 +202,8 @@ button.fndry{
 }
 .edit-user{
   background:$lb-glass;
-  color: $lb-blak;
   border-radius: 2px;
+  color: $lb-blak;
   display: block;
   font-size: .8em;
   text-align: center;
@@ -235,9 +235,9 @@ button.fndry{
 }
 #setup-wrap{
   article{
+    border: 1px solid $lb-grey;
     margin: 10px;
     padding: 10px;
-    border: 1px solid $lb-grey;
   }
 }
 #room-editor {
@@ -247,12 +247,12 @@ button.fndry{
     display: inline-block;
     margin-left: 40px;
     input[type='button']{
-      width: 15px;
-      height: 22px;
       color: $lb-alert;
-      padding: 0px;
       font-weight: 300;
+      height: 22px;
       margin-left: 10px;
+      padding: 0;
+      width: 15px;
     }
   }
   li:hover{
@@ -273,13 +273,13 @@ button.fndry{
 }
 .room-deletr{
   color: $lb-alert;
-  padding: 0px;
   font-weight: 800;
+  padding: 0;
 }
 .no{
   color: $office;
-  padding: 0px 30px;
   font-weight: 800;
+  padding: 0 30px;
 }
 .room-deletr:hover,
 .no:hover{
@@ -291,8 +291,8 @@ button.fndry{
 .time-cancel{
   border: $lb-alert  1px solid !important;
   background: $lb-blak;
-  line-height: 10px !important;
   height: 28px !important;
+  line-height: 10px !important;
   padding: 5px !important;
 }
 .room-start{

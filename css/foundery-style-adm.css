@@ -162,8 +162,8 @@ button.fndry {
 
 .edit-user {
   background: rgba(255, 255, 255, 0.15);
-  color: #000;
   border-radius: 2px;
+  color: #000;
   display: block;
   font-size: .8em;
   text-align: center;
@@ -194,9 +194,9 @@ button.fndry {
   width: 50%; }
 
 #setup-wrap article {
+  border: 1px solid rgba(0, 0, 0, 0.8);
   margin: 10px;
-  padding: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.8); }
+  padding: 10px; }
 
 #room-editor li {
   background: #000;
@@ -204,12 +204,12 @@ button.fndry {
   display: inline-block;
   margin-left: 40px; }
   #room-editor li input[type='button'] {
-    width: 15px;
-    height: 22px;
     color: #cc0000;
-    padding: 0px;
     font-weight: 300;
-    margin-left: 10px; }
+    height: 22px;
+    margin-left: 10px;
+    padding: 0;
+    width: 15px; }
 #room-editor li:hover {
   cursor: pointer; }
   #room-editor li:hover input[type='button']:hover {
@@ -223,13 +223,13 @@ button.fndry {
 
 .room-deletr {
   color: #cc0000;
-  padding: 0px;
-  font-weight: 800; }
+  font-weight: 800;
+  padding: 0; }
 
 .no {
   color: #081cdc;
-  padding: 0px 30px;
-  font-weight: 800; }
+  font-weight: 800;
+  padding: 0 30px; }
 
 .room-deletr:hover,
 .no:hover {
@@ -241,8 +241,8 @@ button.fndry {
 .time-cancel {
   border: #cc0000 1px solid !important;
   background: #000;
-  line-height: 10px !important;
   height: 28px !important;
+  line-height: 10px !important;
   padding: 5px !important; }
 
 .room-start {

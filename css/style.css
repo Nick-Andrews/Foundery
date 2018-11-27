@@ -1,22 +1,22 @@
 /*
 Plugin name: Foundery Co-Work Booking System
 Plugin URI: http://www.websolutions.to
-Description: Co-work Space Room Booking System created for the FOUNDERY Toronto (RIP).
+Description: Co-work Space Room Booking System created for the FOUNDERY Toronto (RIP 2017).
 Author: Nick Andrews Toronto 
 Tags: Co-working Shared Reservation System, Wordpress plugin
 */
 #fndry_launcher {
-  position: fixed;
-  right: 20px;
-  top: 48%;
-  width: 36px;
-  height: 36px;
   background: transparent;
   color: #0080df;
   font-size: 24px;
+  height: 36px;
   line-height: 24px;
+  position: fixed;
+  right: 20px;
   text-align: center;
+  top: 48%;
   transition: all 1s;
+  width: 36px;
   z-index: +10; }
 
 .fndry-open {
@@ -216,11 +216,11 @@ Tags: Co-working Shared Reservation System, Wordpress plugin
       top: 0px;
       left: 0px; }
     #fndry-booking .segment-30 .toggler .hourwrap .hour-segment:nth-of-type(2) {
-      height: 49%;
-      width: 49%;
-      position: absolute;
       bottom: 0px;
-      left: 0px; }
+      height: 49%;
+      left: 0px;
+      position: absolute;
+      width: 49%; }
   #fndry-booking .segment-15 .toggler .hourwrap {
     border: 1px #0080df solid;
     border-radius: 1px;
@@ -324,8 +324,8 @@ Tags: Co-working Shared Reservation System, Wordpress plugin
       background-position: -4px -30px;
       background-size: 60px 60px;
       height: 30px;
-      position: absolute;
       left: 1%;
+      position: absolute;
       top: 1%;
       width: 30px; }
     #fndry-booking .hourwrap div .book-icon:hover {
@@ -350,17 +350,17 @@ Tags: Co-working Shared Reservation System, Wordpress plugin
     text-decoration: line-through; }
 
 #lightbox_wrap {
-  position: fixed;
-  width: 100%;
-  height: 100%;
   background: #0080df;
+  position: fixed;
+  height: 100%;
+  width: 100%;
   z-index: +9; }
   #lightbox_wrap #lb_dialog {
     background: #000;
     color: #adf4ff;
-    width: 50%;
     height: 50%;
-    margin: 0 auto; }
+    margin: 0 auto;
+    width: 50%; }
     #lightbox_wrap #lb_dialog h2 {
       color: #ee9900;
       font-size: 2em;
@@ -371,22 +371,22 @@ Tags: Co-working Shared Reservation System, Wordpress plugin
     #lightbox_wrap #lb_dialog .xloser {
       color: #000;
       background: #adf4ff;
-      padding: 10px;
       border-radius: 2px;
-      width: 100px;
-      text-align: center; }
+      padding: 10px;
+      text-align: center;
+      width: 100px; }
     #lightbox_wrap #lb_dialog .xloser:hover,
     #lightbox_wrap #lb_dialog .xloser:focus {
-      cursor: pointer;
-      background: #0080df; }
+      background: #0080df;
+      cursor: pointer; }
 
 @media only screen and (max-width: 520px) {
   #fndry_launcher {
     bottom: 45px !important; }
 
   #lightbox_wrap #lb_dialog {
-    width: 80%;
-    height: 100%; }
+    height: 100%;
+    width: 80%; }
 
   .week-wrap {
     margin-top: 60px !important; } }
