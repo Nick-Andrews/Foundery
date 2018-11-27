@@ -49,4 +49,4 @@ The third menu link *FOUNDERY LOGS* shows what has been booked in the system. Yo
 When your Foundery Calendar System is activated you will see a small blue representation of
 &#x2296;
 
-This appears on the right side of the viewport in the middle of the page. The CSS code for this is found in the css/style.css file at line 8[ #fndry_launcher ]. When users click on this icon the calendar appears. The forst room in the system is automatically selected and the current week is shown. Click the days of the week to drop-down the booking segments. Click on the bell icons to book a segment.
+This appears on the right side of the viewport in the middle of the page. The CSS code for this is found in the css/style.css file at line 8[ #fndry_launcher ]. When users click on this icon the calendar appears. The first room entered into the Foundery DB System is automatically selected and the current week is shown. Click the days of the week to drop-down the booking segments. Click on the bell icons to book a segment.
