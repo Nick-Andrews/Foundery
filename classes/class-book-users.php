@@ -153,9 +153,6 @@ window.onload = function(){
 		$this->dom->loadHTML('<div id="foundery-non-users"></div><div id="all-users"></div>' );
 		$hed = $this->dom->createElement("h2");
 		$hed->appendChild( $this->dom->createTextNode( "Change the status of your members."));
-		$hed2 = $this->dom->createElement("h3");
-		$hed2->appendChild( $this->dom->createTextNode( "Non status members."));
-		$this->dom->getElementById("foundery-non-users")->appendChild($hed2);
 		$this->dom->getElementById("all-users")->appendChild($hed);
 		$wrap = $this->dom->createElement("div");
 		$this->dom->getElementById("all-users")->appendChild($wrap);
@@ -186,6 +183,9 @@ foreach( $bu->users as $type => $int ){
 }
 $non = $bu->get_nonstatus_users();
 if( $non){
+	$hed2 = $bu->dom->createElement("h3");
+	$hed2->appendChild( $bu->dom->createTextNode( "Non-status members.". count($non)));
+	$bu->dom->getElementById("foundery-non-users")->appendChild($hed2);
 	foreach( $non as $k => $v ){
 		$bu->display_non_aligned($v);
 	}
