@@ -67,11 +67,11 @@ var BK = {
 		this.sec = this.now.getSeconds();
 		this.days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 		this.months = ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"];
-		this.weekday = this.days [this.now.getDay()];
-		this.month = this.months[this.m-1];
-		this.weekstart =  (this.epochtime - ( this.now.getDay() * this.DAY_INC))+(  this.weekinc  * 7 * this.DAY_INC) ;
+		this.weekday = this.days [ this.now.getDay() ];
+		this.month = this.months[ this.m-1 ];
+		this.weekstart =  (this.epochtime - ( this.now.getDay() * this.DAY_INC ))+(  this.weekinc  * 7 * this.DAY_INC );
 		setTimeout( function(){
-			if( BK.onoff ) {
+			if( BK.onoff ){
 				BK.setnow(true);
 				BK.week_layout();
 				BK.get_calendar_bookings();
@@ -84,11 +84,15 @@ var BK = {
 	 */
 	get_me_nonce: function(){
 	 	if ( window.EventSource){
-	    	if ( this.n_feed  != nuller ) { this.n_feed.close(); }
-	    	this.n_feed = new EventSource("?nfeed="+BK.myemail);
+	    	if ( this.n_feed  != nuller ) { 
+	    		this.n_feed.close();
+	    	}
+	    	this.n_feed = new EventSource( "?nfeed="+BK.myemail );
 	     	this.n_feed.onmessage  =  this.receive_nonce;
 	    }else{
-	    	if ( this.n_feed  != nuller ) { this.n_feed.abort(); }
+	    	if ( this.n_feed  != nuller ) { 
+	    		this.n_feed.abort(); 
+	    	}
       		this.n_feed =openServerReq();
       		this.n_feed.self = this;
 	        this.n_feed .open("GET", "?nfeed="+BK.myemail+"&xml=1");
@@ -106,7 +110,7 @@ var BK = {
 		 if ( typeof(e.data) == "undefined"  ){ ///xml feed
 	      if ((BK.n_feed.readyState == this.self.n_feed.DONE) && ( BK.n_feed.responseXML != null )) {
 	        var xmlDoc = BK.n_feed.responseXML;
-	        if ( xmlDoc ) {
+	        if ( xmlDoc ){
 	            BK.nonce = JSON.parse( xmlDoc.getElementsByTagName("pack")[0].childNodes[0].nodeValue );
 	            BK.n_feed.abort();
 	        }
@@ -125,11 +129,15 @@ var BK = {
 	 */
 	get_me_status: function(){
 	 	if ( window.EventSource){
-	    	if ( this.s_feed  != nuller ) { this.s_feed.close(); }
+	    	if ( this.s_feed  != nuller ) { 
+	    		this.s_feed.close(); 
+	    	}
 	    	this.s_feed = new EventSource("?sfeed="+BK.myemail);
 	     	this.s_feed.onmessage  =  this.receive_status;
 	    }else{
-	    	if ( this.s_feed  != nuller ) { this.s_feed.abort(); }
+	    	if ( this.s_feed  != nuller ) { 
+	    		this.s_feed.abort();
+	    	}
       		this.s_feed =openServerReq();
       		this.s_feed.self = this;
 	        this.s_feed .open("GET", "?sfeed="+BK.myemail+"&xml=1");
@@ -146,7 +154,7 @@ var BK = {
 	receive_status: function(e){
 		var stats; 
 		 if ( e.data == nuller ){ ///xml feed
-	      if ((BK.s_feed.readyState == BK.s_feed.DONE) && ( BK.s_feed.responseXML != null )) {
+	      if (( BK.s_feed.readyState == BK.s_feed.DONE) && ( BK.s_feed.responseXML != null )) {
 	        var xmlDoc = BK.s_feed.responseXML;
 	        if ( xmlDoc ) {
 	        	stats  = JSON.parse( xmlDoc.getElementsByTagName("pack")[0].childNodes[0].nodeValue );
@@ -157,7 +165,7 @@ var BK = {
 			stats = JSON.parse(e.data);
 			BK.s_feed.close();
 	    }
-	    if( stats){
+	    if( stats ){
  			BK.maxhours = (parseInt(stats[1]) > 0)?parseInt(stats[1]):0;
 	    	BK.mystatus = stats[0].status;
 		}
@@ -168,9 +176,11 @@ var BK = {
 	 * @return {null}  
 	 */
 	get_calendar_bookings: function(start){
-		if ( start == null ){	start =  (this.epochtime - ( this.now.getDay() * this.DAY_INC))+(  this.weekinc  * 7 * this.DAY_INC)  }
+		if ( start == null ){	start =  ( this.epochtime - ( this.now.getDay() * this.DAY_INC )+(  this.weekinc  * 7 * this.DAY_INC)  }
 	 	if ( window.EventSource){
-		    if ( this.cal_feed  != nuller ) { this.cal_feed.close(); }
+		    if ( this.cal_feed  != nuller ) { 
+		    	this.cal_feed.close(); 
+		    }
 			if ( BK.fbid != null){
 				this.cal_feed = new EventSource("?ffeed="+start+"&room="+BK.room+"&f="+BK.fbid+"&n="+BK.nonce);
 			}else if( BK.wpid != null) {
@@ -180,7 +190,9 @@ var BK = {
 			}
 		    this.cal_feed.onmessage  =  this.receive_time;
 	    }else{
-	    	if ( this.cal_feed != nuller ) {  this.cal_feed.abort(); }
+	    	if ( this.cal_feed != nuller ) {  
+	    		this.cal_feed.abort(); 
+	    	}
 	      	this.cal_feed = openServerReq();
 			if ( BK.fbid != null){
 				this.cal_feed.open("GET","?ffeed="+start+"&room="+BK.room+"&f="+BK.fbid+"&n="+BK.nonce+"&xml=1");
@@ -251,12 +263,12 @@ var BK = {
 	update_calendar: function(d){
 		if( ! BK.onoff ) return;
 		var tots = jQuery( ".mytotals");
-		for ( var j = 0; j < tots.length; j++){
+		for ( var j = 0; j < tots.length; j++ ){
 			tots[j].rel = BK.maxhours;
 			tots[j].style.height = "0px"; 
 		}
 		var xlo= function(){
-			var dd = document.getElementById( this.parentNode.parentNode.parentNode.id).rel;
+			var dd = document.getElementById( this.parentNode.parentNode.parentNode.id ).rel;
 			jQuery(this.parentNode).addClass("pending");
 			this.onoff = false;
 			this.self.try_to_cancel(dd+"-"+this.rel);
@@ -300,7 +312,7 @@ var BK = {
 						}
 						jQuery("#t-"+findid).children("span.book-icon").hide();
 						var addcloser = false;
-						if(((d[i].fbID == BK.fbid)&&(BK.fbid != null)) || ((d[i].inID == BK.inid)&&(BK.inid != null))|| ((d[i].wpID == BK.wpid)&&(BK.wpid != null)) ){
+						if((( d[i].fbID == BK.fbid )&&( BK.fbid != null)) || (( d[i].inID == BK.inid )&&( BK.inid != null ))|| (( d[i].wpID == BK.wpid )&&( BK.wpid != null )) ){
 							addcloser = true;
 						}
 						if ( addcloser){
@@ -311,7 +323,7 @@ var BK = {
 								xloser.setAttribute("class","xloser");
 								xloser.rel = findid;
 								xloser.self = this;
-								document.getElementById("t-"+findid).appendChild( xloser) ; 
+								document.getElementById("t-"+findid).appendChild( xloser ); 
 								jQuery( xloser).click(xlo);
 							}
 						}else{
@@ -385,10 +397,10 @@ var BK = {
 			if( this.rel > 0 ){
 				jQuery(".hotday").removeClass("hotday");
 			}
-			var nu =  (  this.rel  * 7 * this.self.DAY_INC) + this.self.weekstart;
+			var nu =  (  this.rel  * 7 * this.self.DAY_INC ) + this.self.weekstart;
 			this.self.weekinc = this.rel;
 			this.self.update_week_dates( parseInt( nu ));
-			this.self.get_calendar_bookings(nu);
+			this.self.get_calendar_bookings( nu );
 			this.self.onoff = true;
 		};
 		for(var i = 0 ; i < this.futures; i++){
@@ -433,12 +445,12 @@ var BK = {
 			jQuery( ".activeroom").removeClass("activeroom");
 			jQuery(this).addClass("activeroom");
 			BK.show_room_details();
-			var nu =  (  this.self.weekinc  * 7 * this.self.DAY_INC) + this.self.weekstart;
+			var nu =  (  this.self.weekinc  * 7 * this.self.DAY_INC ) + this.self.weekstart;
 			BK.clear_calendar();
 			BK.get_calendar_bookings(nu);
 			jQuery(".weekday").show();
 		};
-		for(var i = 0 ; i < BK.rooms.length; i++){
+		for(var i = 0 ; i < BK.rooms.length; i++ ){
 			var temp = document.createElement("div");
 			temp.setAttribute("id","room-"+BK.rooms[i].id);
 			temp.setAttribute("class","room-selector");
@@ -459,11 +471,11 @@ var BK = {
 	 * @return {null}
 	 */
 	show_room_details: function(  ){
-		for( var i = 0 ; i < BK.rooms.length; i++){
+		for( var i = 0 ; i < BK.rooms.length; i++ ){
 			if( BK.rooms[i].id == BK.room){
 				var wrap = document.getElementById("room-"+BK.room);
 				var desc = document.getElementById("room-"+BK.room+"-description");
-				if( desc == nuller ) {
+				if( desc == nuller ){
 					desc = document.createElement("span");
 					desc.setAttribute("id", "room-"+BK.room+"-description");
 					desc.setAttribute("class", "room-desc");
@@ -491,10 +503,10 @@ var BK = {
 			wrap = document.createElement( "div");
 			wrap.setAttribute("id","week_wrap");
 			wrap.setAttribute("class","week-wrap");
-			jQuery("#fndry-booking").append(wrap);
-			wrap.appendChild(BK.room_selector() );
+			jQuery("#fndry-booking").append( wrap );
+			wrap.appendChild( BK.room_selector() );
 			BK.show_room_details();
-			wrap.appendChild(BK.week_selector() );
+			wrap.appendChild( BK.week_selector() );
 		}
 		var ampm;
 		var temp;
@@ -518,7 +530,7 @@ var BK = {
 		};
 		var xlo= function(){///activated when bell icon clicked
 			jQuery( this.parentNode).addClass("pending");
-			var dd = document.getElementById( this.parentNode.parentNode.parentNode.id).rel;
+			var dd = document.getElementById( this.parentNode.parentNode.parentNode.id ).rel;
 			node.self.try_to_book("t-"+dd+"-"+this.rel);
 			var nu =  (  node.self.weekinc  * 7 * node.self.DAY_INC) + node.self.weekstart;
 		};

@@ -10,7 +10,7 @@ var FU ={
 	 * @return {null} 
 	 */
 	edit_non_users: function(nons, params){
-		for(var i = 0 ; i < nons.length;i++){
+		for(var i = 0 ; i < nons.length; i++ ){
 			nons[i].self = this;
 			jQuery(nons[i]).click( function(){
 				var nom = document.createElement("div");
@@ -30,8 +30,8 @@ var FU ={
 				stats.setAttribute("name","status-set");
 				stats.setAttribute("id","status-set");
 				stats.setAttribute("change","submit()");
-				selectr.appendChild(stats);
-				selectr.appendChild(uses);
+				selectr.appendChild( stats );
+				selectr.appendChild( uses );
 				lightbox(selectr, "New Status", true)
 				jQuery(nom).insertBefore(selectr);
 				this.self.create_status_buttons(params, "user-selectr", "no-type");
