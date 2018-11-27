@@ -7,13 +7,11 @@ This was initially created for The Foundery Toronto.
 
  Users of this system need to have a login/password on your website. 
 
-The Wordpress User status of these users is up to you. You add users from the Wordpress admin panel Users -> Add New.  *I recommend setting users to the lowest access level: Subscriber.* Wordpress lets you choose Subscriber, Contributor, Author, Editor, Administrator as different user status types.
-
+The Wordpress User status of these users is up to you. You add users from the Wordpress admin panel Users -> Add New. Wordpress lets you choose Subscriber, Contributor, Author, Editor, Administrator as different user status types.  
 
 ## Upload the Plugin
 
 In order to try out this plugin on your Wordpress website, download the .zip folder  and then upload it to your website using Plugins -> Add New -> Upload plugin  from the Wordpress admin panel.
-
 
 ## Setting up the Plugin
 The plugin, when activated, will present a menu link in your admin panel showing a small red fire icon. 
@@ -46,3 +44,13 @@ The Second menu link is *FOUNDERY PERMS*. This page lets you assign members on y
 
 ## Managing the Logs
 The third menu link *FOUNDERY LOGS* shows what has been booked in the system. You can truncate this log and that will remove a booking from the system for any member. I need to develop more features on this page and will update these files when I get to it.
+
+# The Front End
+When your Foundery Calendar System is activated you will see a small blue representation of U+02296
+UNICODE
+&#x2296;
+HEX CODE
+&#8854;
+HTML CODE
+&ominus;
+HTML ENTITY 
