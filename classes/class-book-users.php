@@ -3,7 +3,8 @@ class book_users extends \foundery\core {
 	public $dom;
 	public $users;
 	public $params;
-	/*Class constructor
+	/*
+	*Class constructor
 	*/ 
 	function book_users(){
 		global $wpdb;
