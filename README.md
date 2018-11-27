@@ -1,7 +1,7 @@
 # Foundery
-A boardroom and reserved space booking system for co-working members  initially created for The Foundery Toronto
+A Wordpress Plugin to manage boardroom and reserved space bookings for co-working. This was initially created for The Foundery Toronto.
 
-This collection of files is designed to be a Wordpress Plugin. Users of the system need to have a login/password on your website. The status of these users is up to you. I recommend the lowest access level "Subscriber". 
+Users of the system need to have a login/password on your website. The WP User status of these users is up to you. I recommend setting users to the lowest access level "Subscriber". 
 
 In order to try this plugin out on your Wordpress website, download the .zip folder  and then upload it to your website using Plugins -> Add New -> Upload plugin  from the Wordpress admin panel.
 
