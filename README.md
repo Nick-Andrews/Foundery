@@ -1,7 +1,7 @@
 # Foundery
 
 
-##A Wordpress Plugin to manage boardroom and reserved space bookings for co-working. 
+**A Wordpress Plugin to manage boardroom and reserved space bookings for co-working. 
 
 This was initially created for The Foundery Toronto.
 
