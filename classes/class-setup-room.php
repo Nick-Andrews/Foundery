@@ -8,7 +8,7 @@ class setup_room extends \foundery\core {
 	/**
 	 * Class constructor
 	*/ 
-	function setup_room(){
+	function __construct(){
 		$this->dom = new DOMDocument();
 		$this->dom->loadHTML('<div id="setup-wrap"><h2>Foundery Reservation System Settings.</h2></div>' );
 		$this->day_open= "8:00";	
@@ -20,7 +20,7 @@ class setup_room extends \foundery\core {
 	 * Get the time option settings for the Foundery system
 	 * @return [null]
 	 */
-	function get_save_time_params(){
+	public function get_save_time_params(){
 		global $wpdb;
 		$temp = get_option( "fndry-time-params");
 		if($temp ){
@@ -35,7 +35,7 @@ class setup_room extends \foundery\core {
 	 * Create DOM ui for managing the Foundery System time setup option parameters
 	 * @return [null]
 	 */
-	function book_params(){
+	public function book_params(){
 		global $wpdb;
 		$c = get_option( "fndry-time-params" ) ;
 		if( $c) {
@@ -103,7 +103,7 @@ class setup_room extends \foundery\core {
 		$dayclose = $this->dom->createElement('select');
 		$form->appendChild($dayclose);	
 		$dn = $this->dom->createAttribute('name');
-		$dn->value = 'dayclose';
+		$dn->value = 'ordmag-page';
 		$dayclose->appendChild($dn);	
 		$ampm = "am";
 		///set dayclose / duration select
@@ -256,9 +256,9 @@ class setup_room extends \foundery\core {
 	/**
 	 * Create DOM ui for managing information about room spaces
 	 * @param  [object] $r , room objects array
-	 * @return [type]    [description]
+	 * @return [null] 
 	 */
-	function edit_rooms($r){
+	public function edit_rooms($r=null){
 		$wrap =  $this->dom->createElement("article");
 		$this->dom->getElementById("setup-wrap")->appendChild($wrap);
 		$form = $this->dom->createElement("form");
@@ -306,7 +306,7 @@ class setup_room extends \foundery\core {
 	 * @param  [object] $p, $_POST object
 	 * @return [null] 
 	 */
-	function save_time($p){
+	public function save_time($p=null){
 		?>
 		<script>window.onload= function(){saved_it();}</script>
 		<?php 
@@ -344,7 +344,7 @@ class setup_room extends \foundery\core {
 	 * @param  [object] $p, $_POST object
 	 * @return [null] 
 	 */
-	function save_room($p){
+	public function save_room($p=null){
 		?>
 		<script>window.onload= function(){saved_it();}</script>
 		<?php 
@@ -375,7 +375,7 @@ class setup_room extends \foundery\core {
 	 * @param  [object] $p, $_POST object
 	 * @return [null] 
 	 */
-	function delete_room($p){
+	protected function delete_room($p=null){
 		global $wpdb;
 		$query = "DELETE FROM ".$wpdb->prefix."FNDRY_bookroom 
 		WHERE  roomID = '".$p['nom-editor']."' ;";
@@ -390,7 +390,7 @@ class setup_room extends \foundery\core {
 	 * @param  [object] $p, $_POST object
 	 * @return [null] 
 	 */
-	function add_room($p){
+	protected function add_room($p=null){
 		global $wpdb;
 		$query = "INSERT INTO ".$wpdb->prefix."FNDRY_bookroom 
 		(roomID, name, description, address) VALUES 
@@ -419,27 +419,14 @@ if( isset($_POST['nom-editor'])){
 if( isset($_POST['time-editor'])){
 	$sr->save_time($_POST);
 }
-
-
-
-
-
-
-
 $r =  $sr->get_about_rooms() ;
 ?>
 <script> 
 var rooms = '<?php echo json_encode($r); ?>';
 var r = JSON.parse(rooms);
 </script>
-
 <?php
 $sr->book_params(  );
 $sr->edit_rooms( $r );
-///$sr->meta_mgr(  );
-
-
-
-
 echo $sr->dom->saveXML();
 ?>

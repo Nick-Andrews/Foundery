@@ -5,7 +5,7 @@ class fndry_logs extends \foundery\core {
 	public $rejects;
 	/*Class constructor
 	*/ 
-	function fndry_logs(){
+	function __construct(){
 		$this->dom = new DOMDocument();
 		$this->dom->loadHTML('<div id="setup-wrap"><h2>Foundery Reservation System Log.</h2></div>' );
 		$this->savers = array();
@@ -15,7 +15,7 @@ class fndry_logs extends \foundery\core {
 	 * [get_stats description]
 	 * @return [type] [description]
 	 */
-	function get_stats(){
+	protected function get_stats(){
 		global $wpdb;
 		$query = "SELECT 
 		".$wpdb->prefix."FNDRY_bookmeta.segment as 'Time',
@@ -41,7 +41,7 @@ class fndry_logs extends \foundery\core {
 	 * Method create a DOM UI representation of the reservation system logs.
 	 * @return [null]
 	 */
-	function meta_mgr(){
+	public function meta_mgr(){
 		$wrap =  $this->dom->createElement("article");
 		$form = $this->dom->createElement("form");
 		$form->setAttribute("id","room-logs");
@@ -125,7 +125,7 @@ class fndry_logs extends \foundery\core {
 	 * @param  [object] $p, PHP $_POST object
 	 * @return [null]
 	 */
-	function manage_logs($p){
+	public function manage_logs($p=null){
 		global $wpdb;
 		foreach( $p as $k => $v){
 			if( strpos(  $k, "ndry-cancel-") === 1){ ///delete segments
@@ -147,7 +147,7 @@ class fndry_logs extends \foundery\core {
 	 * Some inline javascript to manage the UI buttons for truncating | cancel actions
 	 * @return [null] 
 	 */
-	function inline_javascript(){
+	public function inline_javascript(){
 	?>	
 		<script>
 			function clear_check(){
@@ -175,18 +175,11 @@ class fndry_logs extends \foundery\core {
 	<?php	
 	}
 }
-
 $fa = new fndry_logs();
 $fa->inline_javascript();
 if( isset( $_POST['log-editor'])){
 	$fa->manage_logs($_POST); 
 }
 $fa->meta_mgr();
-
 echo $fa->dom->saveXML();
-
-
-
-
-
 ?>

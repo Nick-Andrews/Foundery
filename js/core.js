@@ -153,7 +153,7 @@ var BK = {
 	 */
 	receive_status: function(e){
 		var stats; 
-		 if ( e.data == nuller ){ ///xml feed
+		if ( e.data == nuller ){ ///xml feed
 	      if (( BK.s_feed.readyState == BK.s_feed.DONE) && ( BK.s_feed.responseXML != null )) {
 	        var xmlDoc = BK.s_feed.responseXML;
 	        if ( xmlDoc ) {
@@ -176,7 +176,9 @@ var BK = {
 	 * @return {null}  
 	 */
 	get_calendar_bookings: function(start){
-		if ( start == null ){	start =  ( this.epochtime - ( this.now.getDay() * this.DAY_INC )+(  this.weekinc  * 7 * this.DAY_INC)  }
+		if ( start == null ){	
+			start =  ( this.epochtime - ( this.now.getDay() * this.DAY_INC )+(  this.weekinc  * 7 * this.DAY_INC) ) 
+		}
 	 	if ( window.EventSource){
 		    if ( this.cal_feed  != nuller ) { 
 		    	this.cal_feed.close(); 

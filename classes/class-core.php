@@ -24,7 +24,7 @@ class core {
 	 * Get users types in Foundery system
 	 * @return [object] WP query result
 	 */
-	function get_user_types(){
+	function get_user_typesXXX(){
 		global $wpdb;
 		$query = "SELECT DISTINCT status FROM ".$wpdb->prefix."FNDRY_bookusers' ;";
 		$res = $wpdb->get_results($query);
@@ -38,7 +38,7 @@ class core {
 	 * @param  [string] $type, type of user [ 'hottdesk', 'staff'...] ]
 	 * @return [object] WP query result
 	 */
-	function get_users($type){
+	public function get_users($type=""){
 		global $wpdb;
 		$query = "SELECT * FROM ".$wpdb->prefix."FNDRY_bookusers WHERE status='".$type."' ;";
 		$res = $wpdb->get_results($query);
@@ -52,13 +52,11 @@ class core {
    	 * @param  [string] $email, email address
    	 * @return [boolean]  true or false depending whether they have a Foundery system status 
    	 */
-   	function get_status($email){
+   	function get_status($email=""){
    		global $wpdb;
    	
 		if( is_user_logged_in()){   		
-	   		$query = "SELECT status 
-	   		FROM ".$wpdb->prefix."FNDRY_bookusers 
-	   		WHERE email ='".$email."';";
+	   		$query = "SELECT status FROM ".$wpdb->prefix."FNDRY_bookusers WHERE email ='".$email."';";
 	   		$res = $wpdb->get_results($query);
 	   		if ( isset($res[0])){
 				$tme =json_decode(  get_option("fndry-time-params"));
@@ -78,7 +76,7 @@ class core {
    	 * @param  [string] $email, email address
 	 * @return [boolean]  true or false depending whether they have a nonce code or not
    	 */
-	function get_nonce($email){
+	public function get_nonce($email=""){
    		global $wpdb;
 		if( is_user_logged_in()){  
 	   		$query = "SELECT userID,  wpID FROM ".$wpdb->prefix."FNDRY_bookusers WHERE email ='".$email."';";
@@ -99,7 +97,7 @@ class core {
    	 * @param  [integer] $roomID, id of room in booking system
    	 * @return [null] 
    	 */
-   	function make_booking($id, $userID, $roomID){
+   	protected function make_booking($id="", $userID=0, $roomID=0){
    		global $wpdb;
    		$temp = explode( "-",$id);
 		$segment = $temp[1]."-".$temp[2]."-".$temp[3]." ".$temp[4].":".$temp[5].":00";
@@ -114,7 +112,7 @@ class core {
    	 * @param  [integer] $roomID, id of room in booking system
    	 * @return [null] 
    	 */
-	function remove_booking($id, $userID, $roomID){
+	protected function remove_booking($id="", $userID=0, $roomID=0){
    		global $wpdb;
    		$temp = explode( "-",$id);
 		$segment = $temp[0]."-".$temp[1]."-".$temp[2]." ".$temp[4].":".$temp[5].":00";
@@ -128,7 +126,7 @@ class core {
    	 * @param  [int] $userID Foundery system user id , is NOT the WP id 
    	 * @return [int]   number of bookings for a user on a specific day
    	 */
-   	function count_day_books($id, $userID){
+   	protected function count_day_books($id="", $userID=0){
    		global $wpdb;
 		$temp = explode( "-",$id);
 		$segment = $temp[1]."-".$temp[2]."-".$temp[3];
@@ -141,7 +139,7 @@ class core {
    	 * Method allows user to cancel a booking in the calendar system if user is valid logged in
    	 * @return [null] 
    	 */
-	function cancel_booking(){
+	public function cancel_booking(){
 		global $wpdb;
    		global $current_user;
 		$postdata = file_get_contents("php://input"); 
@@ -157,7 +155,7 @@ class core {
 	 * Ajax post catch to make a booking is routed depending on user status, number of segments already booked
 	 * @return [null]
 	 */
-   	function catch_booking(){
+   	public function catch_booking(){
    		global $wpdb;
    		global $current_user;
 		$postdata = file_get_contents("php://input"); 
@@ -200,7 +198,7 @@ class core {
    	 * @param [integer] $id , user id in booking system
    	 * @param [string] $msg, message to user
    	 */
-   	function add_msg($id, $msg){
+   	private function add_msg($id=0, $msg=""){
    		global $wpdb;
    		$t = "SELECT rd, msg, userID FROM ".$wpdb->prefix."FNDRY_bookmsg WHERE userID = '".$id."';";
    		$test = $wpdb->get_results($t);
@@ -230,7 +228,7 @@ class core {
    	 * Get information for the rooms available in booking system
 	 * @return [object] WP query result
    	 */
-   	function get_about_rooms(){
+   	public function get_about_rooms(){
    		global $wpdb;
    		$query = "SELECT * FROM ".$wpdb->prefix."FNDRY_bookroom;";
    		$res = $wpdb->get_results($query);
@@ -243,7 +241,7 @@ class core {
    	 * Triggered by ajax post, updates booking system message table to indicate a message has been read
    	 * @return [null]
    	 */
-   	function msg_read(){
+   	public function msg_read(){
    		global $wpdb;
    		$postdata = file_get_contents("php://input"); 
    		$temp = explode("-" ,$postdata);
@@ -256,7 +254,7 @@ class core {
    	 * @param  [string] $nonce, wordpress nonce
    	 * @return [boolean]  true or false  if nonce is correct
    	 */
-   	function validate_nonce($ID, $nonce){
+   	protected function validate_nonce($ID=0, $nonce=""){
    		global $wpdb;
    		$query = "SELECT userID FROM ".$wpdb->prefix."FNDRY_bookusers WHERE ((fbID='".$ID."')||(wpID='".$ID."')||(inID='".$ID."')) LIMIT 0,1;";
    		$res = $wpdb->get_results($query); 
@@ -276,7 +274,7 @@ class core {
    	 * @param  [string] $nonce, wordpress nonce object
    	 * @return [null] 
    	 */
-	function feed_bookings($week,  $roomID, $ID, $nonce){
+	public function feed_bookings($week="",  $roomID=0, $ID=0, $nonce=""){
    		global $wpdb;
    		$ms =  array();
    		if( $this->validate_nonce($ID, $nonce) ){
@@ -346,7 +344,7 @@ class core {
    	 * @param  [object] $res, data object to encode in JSON and send to feed
    	 * @return [null] 
    	 */
-   	protected function feed_me($res){
+   	protected function feed_me($res=null){
    		if( isset($_GET['xml'])){	   			
    			$this->feed_me_XML($res);
    		}else{
@@ -373,7 +371,7 @@ class core {
    	 * @param  [object] $res, data object to encode in JSON and send to feed
    	 * @return [null] 
    	 */
-  	protected function feed_me_XML($res){
+  	protected function feed_me_XML($res=null){
 		header('Access-Control-Allow-Origin: *');
 		header('Access-Control-Allow-Methods: GET');
 		header('Content-type: text/xml');
