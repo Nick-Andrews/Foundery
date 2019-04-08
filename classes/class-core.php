@@ -21,19 +21,6 @@ class core {
    		}
    	}
 	/**
-	 * Get users types in Foundery system
-	 * @return [object] WP query result
-	 */
-	function get_user_typesXXX(){
-		global $wpdb;
-		$query = "SELECT DISTINCT status FROM ".$wpdb->prefix."FNDRY_bookusers' ;";
-		$res = $wpdb->get_results($query);
-		if ( isset($res[0])){
-			return $res;
-		}
-		return false;
-	}
-	/**
 	 * Get all user data from Foundery system user relation for a specific type  
 	 * @param  [string] $type, type of user [ 'hottdesk', 'staff'...] ]
 	 * @return [object] WP query result
